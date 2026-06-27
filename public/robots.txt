@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 👉 Cambia el dominio por el tuyo (debe coincidir con `site` en astro.config.mjs)
+Sitemap: https://pinturasramon.es/sitemap-index.xml

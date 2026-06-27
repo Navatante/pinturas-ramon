@@ -1,0 +1,75 @@
+---
+/**
+ * Datos estructurados JSON-LD de tipo LocalBusiness.
+ * Clave para el SEO local: ayuda a Google a entender que somos una empresa
+ * física con dirección, teléfono, horario y zona de servicio.
+ */
+import { getImage } from 'astro:assets';
+import { site } from '../data/site';
+import logo from '../assets/logo-pinturas-ramon.jpg';
+
+// Logo de la marca para los datos estructurados (SEO local).
+const logoImg = await getImage({ src: logo, width: 600, format: 'jpg' });
+
+// Mapea el horario legible a la sintaxis de schema.org (OpeningHoursSpecification).
+const dayMap: Record<string, string> = {
+  Lunes: 'Monday',
+  Martes: 'Tuesday',
+  Miércoles: 'Wednesday',
+  Jueves: 'Thursday',
+  Viernes: 'Friday',
+  Sábado: 'Saturday',
+  Domingo: 'Sunday',
+};
+
+const openingHours = site.hours
+  .filter((h) => h.hours.toLowerCase() !== 'cerrado')
+  .map((h) => {
+    const [open, close] = h.hours.split('–').map((s) => s.trim());
+    // Expande rangos tipo "Lunes a Viernes".
+    let days: string[] = [];
+    if (h.days.includes(' a ')) {
+      const order = Object.keys(dayMap);
+      const [start, end] = h.days.split(' a ').map((s) => s.trim());
+      const i = order.indexOf(start);
+      const j = order.indexOf(end);
+      days = order.slice(i, j + 1).map((d) => dayMap[d]);
+    } else {
+      days = h.days
+        .split(/,|y/)
+        .map((d) => dayMap[d.trim()])
+        .filter(Boolean);
+    }
+    return { '@type': 'OpeningHoursSpecification', dayOfWeek: days, opens: open, closes: close };
+  });
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HousePainter',
+  name: site.name,
+  legalName: site.legalName,
+  description: site.description,
+  image: new URL(logoImg.src, Astro.site).toString(),
+  logo: new URL(logoImg.src, Astro.site).toString(),
+  url: Astro.site?.toString(),
+  telephone: site.phoneRaw,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    postalCode: site.address.postalCode,
+    addressRegion: site.address.region,
+    addressCountry: site.address.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.address.latitude,
+    longitude: site.address.longitude,
+  },
+  openingHoursSpecification: openingHours,
+  sameAs: site.social.map((s) => s.url),
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

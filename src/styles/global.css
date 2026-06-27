@@ -1,0 +1,62 @@
+/* Tailwind CSS v4 — se importa todo el framework con una sola línea. */
+@import "tailwindcss";
+
+/*
+  Paleta y tipografía configurables — derivadas del logo de Pinturas Ramón.
+  Tailwind v4 usa `@theme` para definir tokens de diseño que se convierten
+  automáticamente en utilidades (p.ej. `bg-brand`, `text-accent`, `bg-cream`).
+  👉 Cambia estos valores para reajustar toda la identidad visual del sitio.
+*/
+@theme {
+  /* Color principal de marca: azul pizarra del logo ("el navajillas") */
+  --color-brand-50: #f4f7f9;
+  --color-brand-100: #e6eef2;
+  --color-brand-200: #c9d9e2;
+  --color-brand-300: #a0bccc;
+  --color-brand-400: #6f97ad;
+  --color-brand-500: #4f7891;
+  --color-brand-600: #3f6079; /* azul del logo */
+  --color-brand-700: #354f63;
+  --color-brand-800: #2f4454;
+  --color-brand-900: #2a3b48;
+
+  /* Color de acento: rojo del rótulo "Ramón" del logo (para CTAs) */
+  --color-accent-400: #d65a4f;
+  --color-accent-500: #c23128; /* rojo del logo */
+  --color-accent-600: #a3261f;
+
+  /* Dorado/ocre del subrayado del logo (estrellas y detalles) */
+  --color-gold-400: #e3b04f;
+  --color-gold-500: #d99a2b;
+  --color-gold-600: #b87d1c;
+
+  /* Crema del fondo del logo (secciones cálidas) */
+  --color-cream-50: #f8f5ef;
+  --color-cream-100: #efe9dd;
+
+  /* WhatsApp brand color */
+  --color-whatsapp: #25d366;
+
+  /* Tipografía legible */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Suavizar el scroll para los enlaces ancla del menú. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respeta la preferencia del usuario de reducir movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Foco visible y accesible en toda la web (navegación por teclado). */
+:focus-visible {
+  outline: 3px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

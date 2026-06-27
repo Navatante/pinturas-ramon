@@ -1,0 +1,48 @@
+---
+/**
+ * Sección de galería: optimiza las imágenes con Astro (getImage) y delega la
+ * interactividad (lightbox) en el componente React Gallery.tsx.
+ *
+ * Así combinamos lo mejor de cada mundo: imágenes optimizadas en build + JS
+ * mínimo que solo se hidrata cuando la galería es visible (client:visible).
+ */
+import { getImage } from 'astro:assets';
+import Gallery, { type GalleryImage } from './Gallery.tsx';
+import { gallery } from '../data/gallery';
+
+// Para cada trabajo generamos: thumbnail responsive (grid) + versión grande (lightbox).
+const images: GalleryImage[] = await Promise.all(
+  gallery.map(async (item) => {
+    const thumb = await getImage({
+      src: item.src,
+      widths: [400, 800],
+      format: 'webp',
+    });
+    const full = await getImage({ src: item.src, width: 1600, format: 'webp' });
+
+    return {
+      thumb: thumb.src,
+      thumbSrcset: thumb.srcSet.attribute,
+      full: full.src,
+      alt: item.alt,
+      caption: item.caption,
+      width: item.src.width,
+      height: item.src.height,
+    } satisfies GalleryImage;
+  }),
+);
+---
+
+<section id="galeria" class="bg-cream-50 py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent-600">Nuestro trabajo</p>
+      <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">Trabajos realizados</h2>
+      <p class="mt-4 text-slate-600">Haz clic en cualquier imagen para verla en detalle.</p>
+    </div>
+
+    <div class="mt-12">
+      <Gallery client:visible images={images} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+---
+/**
+ * Sección de servicios para el home: encabezado + grid de tarjetas.
+ */
+import ServiceCard from './ServiceCard.astro';
+import { services } from '../data/services';
+---
+
+<section id="servicios" class="bg-cream-50 py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-wider text-accent-600">Qué hacemos</p>
+      <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">Nuestros servicios</h2>
+      <p class="mt-4 text-slate-600">
+        Soluciones de pintura profesional para particulares, comunidades y empresas. Calidad,
+        limpieza y cumplimiento de plazos.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </div>
+</section>
