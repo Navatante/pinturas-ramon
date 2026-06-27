@@ -12,57 +12,60 @@ import { site, whatsappUrl } from '../data/site';
   description="Pide tu presupuesto de pintura sin compromiso. Llámanos, escríbenos por email o por WhatsApp, o rellena el formulario."
 >
   <!-- Encabezado -->
-  <section class="bg-brand-700 py-16">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Contacto</h1>
-      <p class="mt-4 max-w-2xl text-lg text-brand-100">
+  <section class="bg-ink-900">
+    <div class="mx-auto max-w-7xl px-5 py-16 sm:px-7">
+      <p class="mb-3 font-serif text-[17px] italic text-gold">Hablemos de tu proyecto</p>
+      <h1 class="font-display text-4xl font-extrabold tracking-[-0.02em] text-[#f7efe1] sm:text-5xl">
+        Contacto
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-[#c5b8a4]">
         ¿Tienes un proyecto en mente? Pídenos presupuesto sin compromiso. Te respondemos en menos
         de 24 horas laborables.
       </p>
     </div>
   </section>
 
-  <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-5">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-7 lg:grid-cols-5">
     <!-- Datos de la empresa -->
     <aside class="lg:col-span-2">
-      <h2 class="text-xl font-bold text-slate-900">Habla con nosotros</h2>
-      <p class="mt-2 text-slate-600">Elige el canal que prefieras.</p>
+      <h2 class="font-display text-xl font-bold text-ink-900">Habla con nosotros</h2>
+      <p class="mt-2 text-muted">Elige el canal que prefieras.</p>
 
       <!-- WhatsApp destacado como alternativa al formulario -->
       <a
         href={whatsappUrl()}
         target="_blank"
         rel="noopener"
-        class="mt-6 flex items-center gap-3 rounded-xl bg-whatsapp px-5 py-4 text-white shadow-sm transition-opacity hover:opacity-90"
+        class="mt-6 flex items-center gap-3 rounded-2xl bg-whatsapp px-5 py-4 text-[#0b2e16] shadow-sm transition-transform hover:scale-[1.02]"
       >
         <svg class="h-7 w-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.785-.99z" />
         </svg>
         <span>
-          <span class="block font-semibold">Escríbenos por WhatsApp</span>
-          <span class="block text-sm text-white/80">Respuesta rápida</span>
+          <span class="block font-bold">Escríbenos por WhatsApp</span>
+          <span class="block text-sm text-[#0b2e16]/80">Respuesta rápida</span>
         </span>
       </a>
 
-      <dl class="mt-8 space-y-5 text-slate-700">
+      <dl class="mt-8 space-y-5 text-ink">
         <div class="flex items-start gap-3">
           <span aria-hidden="true" class="text-xl">📞</span>
           <div>
-            <dt class="text-sm font-medium text-slate-500">Teléfono</dt>
-            <dd><a href={`tel:${site.phoneRaw}`} class="hover:text-brand-600">{site.phoneDisplay}</a></dd>
+            <dt class="text-sm font-medium text-muted">Teléfono</dt>
+            <dd><a href={`tel:${site.phoneRaw}`} class="hover:text-terracotta">{site.phoneDisplay}</a></dd>
           </div>
         </div>
         <div class="flex items-start gap-3">
           <span aria-hidden="true" class="text-xl">✉️</span>
           <div>
-            <dt class="text-sm font-medium text-slate-500">Email</dt>
-            <dd><a href={`mailto:${site.email}`} class="hover:text-brand-600">{site.email}</a></dd>
+            <dt class="text-sm font-medium text-muted">Email</dt>
+            <dd><a href={`mailto:${site.email}`} class="hover:text-terracotta">{site.email}</a></dd>
           </div>
         </div>
         <div class="flex items-start gap-3">
           <span aria-hidden="true" class="text-xl">📍</span>
           <div>
-            <dt class="text-sm font-medium text-slate-500">Dirección</dt>
+            <dt class="text-sm font-medium text-muted">Dirección</dt>
             <dd class="not-italic">
               {site.address.street}<br />{site.address.postalCode} {site.address.city}
             </dd>
@@ -71,13 +74,13 @@ import { site, whatsappUrl } from '../data/site';
         <div class="flex items-start gap-3">
           <span aria-hidden="true" class="text-xl">🕐</span>
           <div>
-            <dt class="text-sm font-medium text-slate-500">Horario</dt>
+            <dt class="text-sm font-medium text-muted">Horario</dt>
             <dd>
               <ul>
                 {site.hours.map((h) => (
                   <li class="flex justify-between gap-6">
                     <span>{h.days}</span>
-                    <span class="text-slate-500">{h.hours}</span>
+                    <span class="text-muted">{h.hours}</span>
                   </li>
                 ))}
               </ul>
@@ -89,9 +92,9 @@ import { site, whatsappUrl } from '../data/site';
 
     <!-- Formulario -->
     <div class="lg:col-span-3">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-        <h2 class="text-xl font-bold text-slate-900">Pide tu presupuesto</h2>
-        <p class="mt-1 text-sm text-slate-600">Rellena el formulario y te contactamos enseguida.</p>
+      <div class="rounded-3xl border border-line bg-cream-card p-6 shadow-sm sm:p-8">
+        <h2 class="font-display text-xl font-bold text-ink-900">Pide tu presupuesto</h2>
+        <p class="mt-1 text-sm text-muted">Rellena el formulario y te contactamos enseguida.</p>
         <div class="mt-6">
           <ContactForm client:load />
         </div>

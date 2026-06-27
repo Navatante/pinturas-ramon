@@ -2,49 +2,64 @@
 @import "tailwindcss";
 
 /*
-  Paleta y tipografía configurables — derivadas del logo de Pinturas Ramón.
-  Tailwind v4 usa `@theme` para definir tokens de diseño que se convierten
-  automáticamente en utilidades (p.ej. `bg-brand`, `text-accent`, `bg-cream`).
+  Paleta y tipografía de Pinturas Ramón — dirección cálida "artesanal":
+  crema de fondo, terracota como acento y dorado para los detalles.
+  Tailwind v4 usa `@theme` para definir tokens que se convierten en utilidades
+  (p.ej. `bg-cream`, `text-terracotta`, `font-display`).
   👉 Cambia estos valores para reajustar toda la identidad visual del sitio.
 */
 @theme {
-  /* Color principal de marca: azul pizarra del logo ("el navajillas") */
-  --color-brand-50: #f4f7f9;
-  --color-brand-100: #e6eef2;
-  --color-brand-200: #c9d9e2;
-  --color-brand-300: #a0bccc;
-  --color-brand-400: #6f97ad;
-  --color-brand-500: #4f7891;
-  --color-brand-600: #3f6079; /* azul del logo */
-  --color-brand-700: #354f63;
-  --color-brand-800: #2f4454;
-  --color-brand-900: #2a3b48;
+  /* Fondos cálidos */
+  --color-cream: #f4ecdf; /* fondo de página */
+  --color-cream-card: #fbf7ee; /* tarjetas y superficies */
 
-  /* Color de acento: rojo del rótulo "Ramón" del logo (para CTAs) */
-  --color-accent-400: #d65a4f;
-  --color-accent-500: #c23128; /* rojo del logo */
-  --color-accent-600: #a3261f;
+  /* Tinta (texto y secciones oscuras) */
+  --color-ink: #2a201a; /* texto base */
+  --color-ink-900: #231a13; /* titulares y sección de contacto oscura */
 
-  /* Dorado/ocre del subrayado del logo (estrellas y detalles) */
-  --color-gold-400: #e3b04f;
-  --color-gold-500: #d99a2b;
-  --color-gold-600: #b87d1c;
+  /* Acento terracota (CTAs y enlaces destacados) */
+  --color-terracotta-400: #d6764f;
+  --color-terracotta: #c4623d;
+  --color-terracotta-600: #a8502f;
 
-  /* Crema del fondo del logo (secciones cálidas) */
-  --color-cream-50: #f8f5ef;
-  --color-cream-100: #efe9dd;
+  /* Dorado/ocre para detalles e iconos */
+  --color-gold: #e0a43b;
+
+  /* Texto secundario y líneas */
+  --color-muted: #6b5f50;
+  --color-line: #e4d8c4;
 
   /* WhatsApp brand color */
   --color-whatsapp: #25d366;
 
-  /* Tipografía legible */
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  /* Tipografía: display de marca + cuerpo legible + serif itálica para acentos */
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: "Spectral", Georgia, "Times New Roman", serif;
 }
 
 /* Suavizar el scroll para los enlaces ancla del menú. */
 html {
   scroll-behavior: smooth;
+}
+
+/* Selección de texto con los colores de marca. */
+::selection {
+  background: var(--color-terracotta);
+  color: var(--color-cream-card);
+}
+
+/* Animación del badge flotante del hero (del diseño original). */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
 }
 
 /* Respeta la preferencia del usuario de reducir movimiento. */
@@ -56,7 +71,7 @@ html {
 
 /* Foco visible y accesible en toda la web (navegación por teclado). */
 :focus-visible {
-  outline: 3px solid var(--color-brand-500);
+  outline: 3px solid var(--color-terracotta);
   outline-offset: 2px;
   border-radius: 4px;
 }

@@ -7,11 +7,11 @@ import type { Service } from '../data/services';
 
 interface Props {
   service: Service;
-  /** Si true, enlaza al detalle del servicio (ancla en /servicios). */
-  linkToDetail?: boolean;
+  /** Si true, muestra el enlace a la sección de contacto para pedir presupuesto. */
+  showCta?: boolean;
 }
 
-const { service, linkToDetail = true } = Astro.props;
+const { service, showCta = true } = Astro.props;
 
 // Mapa de iconos (paths SVG estilo heroicons outline).
 const icons: Record<Service['icon'], string> = {
@@ -25,24 +25,24 @@ const icons: Record<Service['icon'], string> = {
 ---
 
 <article
-  class="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+  class="group flex h-full flex-col gap-4 rounded-2xl border border-line bg-cream-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[0_22px_44px_-26px_rgba(42,32,26,0.45)]"
 >
   <div
-    class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white"
+    class="inline-flex h-13 w-13 items-center justify-center rounded-xl bg-terracotta/12 p-3.5 text-terracotta transition-colors group-hover:bg-terracotta group-hover:text-cream-card"
   >
     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d={icons[service.icon]} />
     </svg>
   </div>
-  <h3 class="text-lg font-bold text-slate-900">{service.title}</h3>
-  <p class="mt-2 flex-grow text-sm leading-relaxed text-slate-600">{service.summary}</p>
+  <h3 class="font-display text-[23px] font-bold tracking-[-0.01em] text-ink-900">{service.title}</h3>
+  <p class="text-[15px] leading-relaxed text-muted">{service.summary}</p>
   {
-    linkToDetail && (
+    showCta && (
       <a
-        href={`/servicios#${service.id}`}
-        class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700"
+        href="/#contacto"
+        class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-terracotta hover:text-terracotta-600"
       >
-        Saber más
+        Pedir presupuesto
         <span aria-hidden="true">→</span>
       </a>
     )

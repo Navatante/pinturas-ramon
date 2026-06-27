@@ -60,10 +60,11 @@ const ogImageURL = new URL(image ?? ogDefault.src, Astro.site);
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageURL} />
 
-<!-- Tipografía Inter (legible y moderna), cargada de forma eficiente -->
+<!-- Tipografía de marca: Bricolage Grotesque (display), Hanken Grotesk (cuerpo)
+     y Spectral itálica (acentos), cargadas de forma eficiente. -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:ital,wght@1,400;1,500&display=swap"
   rel="stylesheet"
 />

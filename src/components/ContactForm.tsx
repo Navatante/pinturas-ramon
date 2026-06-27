@@ -107,20 +107,20 @@ export default function ContactForm() {
   // Pantalla de éxito.
   if (status === 'success') {
     return (
-      <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700">
-          <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <div className="flex min-h-[330px] flex-col items-center justify-center gap-3.5 rounded-2xl p-8 text-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#7cc47a] text-white">
+          <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="mt-4 text-lg font-bold text-slate-900">¡Mensaje enviado!</h3>
-        <p className="mt-2 text-slate-600">
-          Gracias por contactar con nosotros. Te responderemos lo antes posible.
+        <h3 className="font-display text-2xl font-bold text-ink-900">¡Mensaje enviado!</h3>
+        <p className="max-w-xs text-muted">
+          Gracias por contactar con nosotros. Te responderemos en menos de 24 horas.
         </p>
         <button
           type="button"
           onClick={() => setStatus('idle')}
-          className="mt-4 text-sm font-semibold text-brand-600 hover:text-brand-700"
+          className="mt-2 text-sm font-semibold text-terracotta hover:text-terracotta-600"
         >
           Enviar otro mensaje
         </button>
@@ -129,7 +129,7 @@ export default function ContactForm() {
   }
 
   const inputClass =
-    'w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200';
+    'w-full rounded-xl border border-line bg-white px-4 py-3 text-ink shadow-sm outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/30';
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
@@ -149,7 +149,7 @@ export default function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         {/* Nombre */}
         <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-slate-700">
+          <label htmlFor="name" className="mb-1.5 block text-sm font-semibold text-ink">
             Nombre <span className="text-red-500">*</span>
           </label>
           <input
@@ -171,7 +171,7 @@ export default function ContactForm() {
 
         {/* Teléfono */}
         <div>
-          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-slate-700">
+          <label htmlFor="phone" className="mb-1.5 block text-sm font-semibold text-ink">
             Teléfono
           </label>
           <input
@@ -186,7 +186,7 @@ export default function ContactForm() {
 
       {/* Email */}
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-slate-700">
+        <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-ink">
           Email <span className="text-red-500">*</span>
         </label>
         <input
@@ -208,7 +208,7 @@ export default function ContactForm() {
 
       {/* Tipo de servicio */}
       <div>
-        <label htmlFor="service" className="mb-1.5 block text-sm font-medium text-slate-700">
+        <label htmlFor="service" className="mb-1.5 block text-sm font-semibold text-ink">
           Tipo de servicio
         </label>
         <select
@@ -229,7 +229,7 @@ export default function ContactForm() {
 
       {/* Mensaje */}
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-slate-700">
+        <label htmlFor="message" className="mb-1.5 block text-sm font-semibold text-ink">
           Mensaje <span className="text-red-500">*</span>
         </label>
         <textarea
@@ -258,7 +258,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-terracotta px-6 py-3.5 text-base font-bold text-cream-card shadow-sm transition-colors hover:bg-terracotta-600 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === 'loading' ? (
           <>
@@ -269,9 +269,13 @@ export default function ContactForm() {
             Enviando…
           </>
         ) : (
-          'Enviar mensaje'
+          'Solicitar presupuesto'
         )}
       </button>
+
+      <p className="text-center text-[12.5px] text-muted">
+        Te respondemos en menos de 24 h. Sin compromiso.
+      </p>
     </form>
   );
 }

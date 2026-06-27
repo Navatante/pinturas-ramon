@@ -25,6 +25,19 @@ interface Props {
   images: GalleryImage[];
 }
 
+/**
+ * Patrón "bento": la primera imagen ocupa un bloque grande y la última una banda
+ * ancha; el resto son cuadradas. Se repite si hay más imágenes.
+ */
+const SPANS = [
+  'sm:col-span-2 sm:row-span-2',
+  '',
+  '',
+  '',
+  '',
+  'sm:col-span-2',
+];
+
 export default function Gallery({ images }: Props) {
   // null = lightbox cerrado; número = índice de la imagen abierta.
   const [active, setActive] = useState<number | null>(null);
@@ -64,20 +77,20 @@ export default function Gallery({ images }: Props) {
 
   return (
     <>
-      {/* Grid de miniaturas */}
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+      {/* Grid "bento" de miniaturas */}
+      <ul className="grid auto-rows-[150px] grid-cols-2 gap-4 sm:grid-cols-4 sm:auto-rows-[170px]">
         {images.map((img, i) => (
-          <li key={img.full}>
+          <li key={img.full} className={SPANS[i % SPANS.length]}>
             <button
               type="button"
               onClick={() => setActive(i)}
-              className="group relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-100 shadow-sm focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300"
+              className="group relative block h-full w-full overflow-hidden rounded-2xl border border-[#ddcfb8] bg-[#e6d8c0] shadow-sm focus:outline-none focus-visible:ring-4 focus-visible:ring-terracotta-400"
               aria-label={`Ampliar imagen: ${img.alt}`}
             >
               <img
                 src={img.thumb}
                 srcSet={img.thumbSrcset}
-                sizes="(min-width: 640px) 33vw, 50vw"
+                sizes="(min-width: 640px) 50vw, 50vw"
                 alt={img.alt}
                 width={img.width}
                 height={img.height}
@@ -85,7 +98,12 @@ export default function Gallery({ images }: Props) {
                 decoding="async"
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="pointer-events-none absolute inset-0 bg-slate-900/0 transition-colors group-hover:bg-slate-900/20" />
+              <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#231a13]/55 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              {img.caption && (
+                <span className="pointer-events-none absolute bottom-3 left-3 right-3 translate-y-1 text-left text-[12.5px] font-medium text-[#fbf7ee] opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+                  {img.caption}
+                </span>
+              )}
             </button>
           </li>
         ))}
@@ -136,7 +154,7 @@ export default function Gallery({ images }: Props) {
               className="mx-auto max-h-[80vh] w-auto rounded-lg object-contain"
             />
             {images[active].caption && (
-              <figcaption className="mt-3 text-center text-sm text-slate-300">
+              <figcaption className="mt-3 text-center text-sm text-[#d8cdbb]">
                 {images[active].caption}
               </figcaption>
             )}

@@ -1,46 +1,83 @@
 ---
 /**
- * Home: hero, servicios, galería, sobre nosotros y testimonios.
+ * Home (single-page): hero, franja de confianza, servicios, galería y contacto.
+ * Sigue el diseño "artesanal" de Pinturas Ramón (paleta crema/terracota).
  */
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import GallerySection from '../components/GallerySection.astro';
-import AboutSection from '../components/AboutSection.astro';
-import Testimonials from '../components/Testimonials.tsx';
-import { reviews } from '../data/reviews';
+import ContactForm from '../components/ContactForm.tsx';
+import { site, whatsappUrl } from '../data/site';
+
+const trust = ['Comunidades', 'Oficinas', 'Hostelería', 'Particulares', 'Reformas'];
 ---
 
 <Layout>
-  <Hero />
-  <ServicesSection />
-  <GallerySection />
-  <AboutSection />
+  <div class="mx-auto max-w-7xl overflow-x-hidden px-5 sm:px-7">
+    <Hero />
 
-  <!-- Testimonios -->
-  <section class="bg-cream-50 py-20">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <div class="mx-auto max-w-2xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wider text-accent-600">Opiniones</p>
-        <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="mt-12">
-        <Testimonials client:visible reviews={reviews} />
-      </div>
+    <!-- Franja de confianza -->
+    <div
+      class="mb-20 flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-line bg-cream-card px-7 py-6"
+    >
+      <span class="font-serif text-[15.5px] italic text-muted">Confían en nosotros</span>
+      {
+        trust.map((t) => (
+          <span class="font-display text-lg font-bold text-[#b9a98f]">{t}</span>
+        ))
+      }
     </div>
-  </section>
 
-  <!-- CTA final -->
-  <section class="bg-brand-700">
-    <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6">
-      <h2 class="text-3xl font-extrabold text-white sm:text-4xl">¿Listo para renovar tus espacios?</h2>
-      <p class="mt-4 text-lg text-brand-100">Pide tu presupuesto gratuito y sin compromiso.</p>
-      <a
-        href="/contacto"
-        class="mt-8 inline-block rounded-full bg-accent-500 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-accent-600"
-      >
-        Pide presupuesto
-      </a>
-    </div>
-  </section>
+    <ServicesSection />
+    <GallerySection />
+
+    <!-- Contacto / presupuesto -->
+    <section
+      id="contacto"
+      class="mb-10 grid scroll-mt-24 gap-12 rounded-3xl bg-ink-900 p-8 sm:p-14 lg:grid-cols-2"
+    >
+      <div>
+        <p class="mb-3 font-serif text-[17px] italic text-gold">Hablemos de tu proyecto</p>
+        <h2
+          class="mb-5 font-display text-4xl font-extrabold leading-tight tracking-[-0.02em] text-[#f7efe1] sm:text-[44px]"
+        >
+          Pide tu presupuesto<br />sin compromiso
+        </h2>
+        <p class="mb-8 max-w-md text-[16.5px] leading-relaxed text-[#c5b8a4]">
+          Cuéntanos qué quieres pintar y te respondemos el mismo día con una estimación clara. Sin
+          sorpresas.
+        </p>
+        <a
+          href={whatsappUrl()}
+          target="_blank"
+          rel="noopener"
+          class="mb-8 inline-flex items-center gap-3 rounded-full bg-whatsapp px-6 py-4 text-[16.5px] font-bold text-[#0b2e16] transition-transform hover:scale-105"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.785-.99z" />
+          </svg>
+          Escríbenos por WhatsApp
+        </a>
+        <ul class="flex flex-col gap-3.5 text-[15.5px] text-[#d8cdbb]">
+          <li class="flex items-center gap-3">
+            <span class="text-gold" aria-hidden="true">●</span>
+            <a href={`tel:${site.phoneRaw}`} class="hover:text-white">{site.phoneDisplay}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="text-gold" aria-hidden="true">●</span>
+            <a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="text-gold" aria-hidden="true">●</span>
+            {site.address.city} y alrededores · L–V 8:00–18:00
+          </li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl bg-cream-card p-7 sm:p-8">
+        <ContactForm client:load />
+      </div>
+    </section>
+  </div>
 </Layout>
