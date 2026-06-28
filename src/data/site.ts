@@ -65,9 +65,9 @@ export const site: SiteConfig = {
 
   address: {
     street: 'Calle del Pintor, 12',
-    city: 'Valencia',
-    postalCode: '46001',
-    region: 'Valencia',
+    city: 'Baza',
+    postalCode: '18800',
+    region: 'Granada',
     country: 'España',
     latitude: 39.4699,
     longitude: -0.3763,
