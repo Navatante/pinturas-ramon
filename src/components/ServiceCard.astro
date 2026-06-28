@@ -7,11 +7,9 @@ import type { Service } from '../data/services';
 
 interface Props {
   service: Service;
-  /** Si true, muestra el enlace a la sección de contacto para pedir presupuesto. */
-  showCta?: boolean;
 }
 
-const { service, showCta = true } = Astro.props;
+const { service } = Astro.props;
 
 // Mapa de iconos (paths SVG estilo heroicons outline).
 const icons: Record<Service['icon'], string> = {
@@ -36,15 +34,4 @@ const icons: Record<Service['icon'], string> = {
   </div>
   <h3 class="font-display text-[23px] font-bold tracking-[-0.01em] text-ink-900">{service.title}</h3>
   <p class="text-[15px] leading-relaxed text-muted">{service.summary}</p>
-  {
-    showCta && (
-      <a
-        href="/#contacto"
-        class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-terracotta hover:text-terracotta-600"
-      >
-        Pedir presupuesto
-        <span aria-hidden="true">→</span>
-      </a>
-    )
-  }
 </article>
