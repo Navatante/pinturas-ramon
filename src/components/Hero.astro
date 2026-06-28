@@ -71,15 +71,19 @@ const stats = [
   </div>
 
   <div class="relative">
-    <Image
-      src={heroImage}
-      alt="Profesional de Pinturas Ramón pintando una vivienda"
-      class="aspect-[4/5] w-full rounded-3xl border border-line object-cover"
-      loading="eager"
-      fetchpriority="high"
-      widths={[480, 720, 960]}
-      sizes="(min-width: 1024px) 45vw, 100vw"
-    />
+    <div
+      class="relative overflow-hidden rounded-3xl border border-line after:absolute after:inset-0 after:bg-linear-to-t after:from-ink-900/35 after:via-ink-900/5 after:to-transparent after:content-['']"
+    >
+      <Image
+        src={heroImage}
+        alt="Profesional de Pinturas Ramón pintando una vivienda"
+        class="aspect-[4/5] w-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+        widths={[480, 720, 960]}
+        sizes="(min-width: 1024px) 45vw, 100vw"
+      />
+    </div>
     <div
       class="floaty absolute bottom-9 -left-3 rounded-2xl border border-line bg-cream-card px-5 py-3.5 shadow-[0_18px_40px_-18px_rgba(42,32,26,0.4)] sm:-left-6"
     >
