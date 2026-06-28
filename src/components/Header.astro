@@ -7,9 +7,8 @@
  * - Responsive: menú hamburguesa en móvil (JS inline mínimo).
  * - Accesible: aria-labels, navegable por teclado, foco visible (global.css).
  */
-import { Image } from 'astro:assets';
 import { site, whatsappUrl } from '../data/site';
-import logo from '../assets/Ramon-logo.png';
+import logo from '../assets/Ramon-logo-new.svg';
 
 const nav = [
   { label: 'Servicios', href: '/#servicios' },
@@ -27,7 +26,7 @@ const nav = [
       class="flex items-center gap-3 text-ink"
       aria-label={`${site.name} — Inicio`}
     >
-      <Image src={logo} alt={site.name} height={52} loading="eager" class="block h-[52px] w-auto" />
+      <img src={logo.src} alt={site.name} width={logo.width} height={logo.height} loading="eager" class="block h-[52px] w-auto" />
       <span
         class="border-l border-[#ddcfba] pl-[11px] font-display text-[13px] font-semibold uppercase leading-tight tracking-[0.12em] text-[#8a7c69]"
         >Pinturas y<br />decoración</span
