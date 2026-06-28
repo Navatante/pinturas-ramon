@@ -3,7 +3,9 @@
  * Pie de página: marca, datos de contacto, horario y redes sociales.
  * Todo se alimenta desde site.ts. Paleta cálida del diseño.
  */
+import { Image } from 'astro:assets';
 import { site, whatsappUrl } from '../data/site';
+import logo from '../assets/Ramon-logo.png';
 
 const year = new Date().getFullYear();
 ---
@@ -13,10 +15,7 @@ const year = new Date().getFullYear();
     <!-- Marca -->
     <div>
       <a href="/" class="flex items-center gap-3 text-ink" aria-label={`${site.name} — Inicio`}>
-        <span
-          class="grid h-8 w-8 place-items-center rounded-lg bg-terracotta font-display text-base font-extrabold text-cream-card"
-          >R</span
-        >
+        <Image src={logo} alt={site.name} height={40} class="block h-10 w-auto" />
         <span class="font-display text-lg font-bold">{site.name}</span>
       </a>
       <p class="mt-4 max-w-xs text-sm leading-relaxed text-muted">{site.slogan}.</p>

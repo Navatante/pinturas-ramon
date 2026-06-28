@@ -1,13 +1,15 @@
 ---
 /**
  * Cabecera con navegación principal (estilo "artesanal" del diseño).
- * - Marca: cuadro terracota con la "R" + nombre en tipografía display.
+ * - Marca: logo Ramón + subtítulo "Pinturas y decoración".
  * - Enlaces ancla que resuelven desde cualquier página (/#servicios…).
  * - CTA destacado a WhatsApp con punto de estado verde.
  * - Responsive: menú hamburguesa en móvil (JS inline mínimo).
  * - Accesible: aria-labels, navegable por teclado, foco visible (global.css).
  */
+import { Image } from 'astro:assets';
 import { site, whatsappUrl } from '../data/site';
+import logo from '../assets/Ramon-logo.png';
 
 const nav = [
   { label: 'Servicios', href: '/#servicios' },
@@ -25,11 +27,11 @@ const nav = [
       class="flex items-center gap-3 text-ink"
       aria-label={`${site.name} — Inicio`}
     >
+      <Image src={logo} alt={site.name} height={52} loading="eager" class="block h-[52px] w-auto" />
       <span
-        class="grid h-9 w-9 place-items-center rounded-[9px] bg-terracotta font-display text-lg font-extrabold text-cream-card"
-        >R</span
+        class="border-l border-[#ddcfba] pl-[11px] font-display text-[13px] font-semibold uppercase leading-tight tracking-[0.12em] text-[#8a7c69]"
+        >Pinturas y<br />decoración</span
       >
-      <span class="font-display text-xl font-bold tracking-tight">{site.name}</span>
     </a>
 
     <!-- Navegación de escritorio -->
