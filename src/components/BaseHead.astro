@@ -23,9 +23,8 @@ const {
 // Por defecto compartimos el logo de la marca en redes sociales.
 const ogDefault = await getImage({ src: logo, width: 1200, format: 'jpg' });
 
-// Favicons generados a partir del logo.
-const favicon = await getImage({ src: logo, width: 32, format: 'png' });
-const appleIcon = await getImage({ src: logo, width: 180, format: 'png' });
+// Los iconos usan el nuevo logo: SVG para el favicon y PNG para el apple-touch-icon
+// (ambos en public/). El logo .jpg solo se usa ya para la imagen de Open Graph.
 
 // URL canónica de la página actual y URL absoluta de la imagen OG.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -35,8 +34,8 @@ const ogImageURL = new URL(image ?? ogDefault.src, Astro.site);
 <!-- Metadatos básicos -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/png" href={favicon.src} />
-<link rel="apple-touch-icon" href={appleIcon.src} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- SEO -->
